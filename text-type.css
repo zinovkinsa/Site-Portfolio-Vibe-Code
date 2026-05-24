@@ -1,0 +1,38 @@
+/* TextType — адаптация React Bits под статический сайт */
+.text-type {
+  display: block;
+  white-space: normal;
+}
+
+.text-type__content {
+  display: inline;
+}
+
+.text-type__cursor {
+  margin-left: 0.12em;
+  display: inline-block;
+  color: var(--lime, #d4ff5a);
+  font-family: var(--font-mono, monospace);
+  font-weight: 500;
+  animation: textTypeBlink var(--cursor-blink-duration, 0.5s) ease-in-out infinite;
+}
+
+.text-type__cursor--hidden {
+  visibility: hidden;
+}
+
+.text-type.is-complete .text-type__cursor {
+  opacity: 0.65;
+}
+
+@keyframes textTypeBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Hero: наследует Syne от .hero__title */
+.hero__title.text-type .text-type__content {
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
