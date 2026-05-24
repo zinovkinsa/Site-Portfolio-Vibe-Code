@@ -299,6 +299,9 @@ function markCursorTargets() {
     ".hero__card",
     ".hero__metrics div",
     ".review-card",
+    ".modal__dialog",
+    ".modal__close",
+    ".form-consent",
   ].join(", ");
 
   document.querySelectorAll(selector).forEach((el) => {

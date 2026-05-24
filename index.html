@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="text-type.css">
   <link rel="stylesheet" href="target-cursor.css">
   <link rel="stylesheet" href="reviews-stack.css">
+  <link rel="stylesheet" href="contact-modal.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -34,7 +35,7 @@
       <a href="#reviews" data-nav="reviews">Отзывы</a>
       <a href="#contact" data-nav="contact">Контакты</a>
     </nav>
-    <a href="#contact" class="btn btn--sm btn--outline">Написать</a>
+    <button type="button" class="btn btn--sm btn--outline js-open-contact">Написать</button>
   </header>
 
   <main>
@@ -415,10 +416,10 @@
             От первого вайба до готовой страницы.
           </p>
           <div class="hero__actions">
-            <a href="https://t.me/yourname" class="btn btn--primary">
+            <button type="button" class="btn btn--primary js-open-contact cursor-target">
               <span>Написать мне</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            </button>
             <a href="#projects" class="btn btn--ghost">Посмотреть работы</a>
           </div>
         </div>
@@ -453,10 +454,86 @@
     </footer>
   </main>
 
+  <div class="modal" id="contact-modal" hidden aria-hidden="true">
+    <div class="modal__backdrop js-close-contact" tabindex="-1"></div>
+    <div
+      class="modal__dialog cursor-target"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-modal-title"
+    >
+      <button type="button" class="modal__close js-close-contact cursor-target" aria-label="Закрыть">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="modal__content" id="contact-modal-form-wrap">
+        <p class="modal__eyebrow">Связаться</p>
+        <h2 class="modal__title" id="contact-modal-title">Написать мне</h2>
+        <p class="modal__subtitle">Оставь контакты — вернусь с идеей и следующим шагом по проекту.</p>
+
+        <form class="modal__form" id="contact-form" novalidate>
+          <div class="form-field">
+            <label class="form-field__label" for="contact-name">Имя</label>
+            <input
+              class="form-field__input"
+              type="text"
+              id="contact-name"
+              name="name"
+              autocomplete="name"
+              placeholder="Как к тебе обращаться"
+              required
+            >
+          </div>
+          <div class="form-field">
+            <label class="form-field__label" for="contact-email">Почта</label>
+            <input
+              class="form-field__input"
+              type="email"
+              id="contact-email"
+              name="email"
+              autocomplete="email"
+              placeholder="hello@example.com"
+              required
+            >
+          </div>
+          <div class="form-field">
+            <label class="form-field__label" for="contact-phone">Номер телефона</label>
+            <input
+              class="form-field__input"
+              type="tel"
+              id="contact-phone"
+              name="phone"
+              autocomplete="tel"
+              placeholder="+7 (999) 000-00-00"
+              required
+            >
+          </div>
+          <label class="form-consent cursor-target">
+            <input class="form-consent__input" type="checkbox" id="contact-consent" name="consent" required>
+            <span class="form-consent__box" aria-hidden="true"></span>
+            <span class="form-consent__text">Даю согласие на обработку моих персональных данных</span>
+          </label>
+          <p class="form-error" id="contact-form-error" role="alert" hidden></p>
+          <button type="submit" class="btn btn--primary btn--full cursor-target">Отправить</button>
+        </form>
+      </div>
+
+      <div class="modal__success" id="contact-modal-success" hidden>
+        <div class="modal__success-icon" aria-hidden="true">✓</div>
+        <h2 class="modal__title">Заявка отправлена</h2>
+        <p class="modal__subtitle">Спасибо! Скоро свяжусь с тобой по указанным контактам.</p>
+        <button type="button" class="btn btn--ghost btn--full js-close-contact cursor-target">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="text-type.js"></script>
   <script src="target-cursor.js"></script>
   <script src="reviews-stack.js"></script>
+  <script src="contact-modal.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
